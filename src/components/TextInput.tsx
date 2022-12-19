@@ -1,24 +1,39 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { RegisterOptions, useFormContext } from 'react-hook-form';
 
-interface TextInputProps {
+interface TextInputProps extends RegisterOptions {
   name: string;
   placeholder?: string;
-  required?: boolean;
   defaultValue?: string;
+  type?: React.HTMLInputTypeAttribute;
 }
 
-const TextInput: React.FC<TextInputProps> = (props) => {
-  const { name, placeholder } = props;
+const style = {
+  normal: 'focus:border-sky-500',
+  error: 'border-red-500',
+};
 
-  const { register } = useForm();
+const TextInput: React.FC<TextInputProps> = (props) => {
+  const { name, placeholder, type, ...registerOptions } = props;
+
+  const { register, formState, getFieldState } = useFormContext();
+
+  const { error } = getFieldState(name, formState);
 
   return (
-    <input
-      className="block border outline-0 w-full px-4 py-3 border-grey-300 rounded-md focus:border-sky-500"
-      placeholder={placeholder}
-      {...register(name)}
-    />
+    <div className="flex flex-col">
+      <input
+        className={`block border outline-0 w-full px-4 py-3 border-grey-300 rounded-md  ${
+          error ? style.error : style.normal
+        }`}
+        type={type}
+        placeholder={placeholder}
+        {...register(name, registerOptions)}
+      />
+      {error && (
+        <p className="w-full px-4 pt-2 text-red-500">{error.message}</p>
+      )}
+    </div>
   );
 };
 
