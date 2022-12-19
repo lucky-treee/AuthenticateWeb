@@ -21,9 +21,9 @@ const TextInput: React.FC<TextInputProps> = (props) => {
   const { error } = getFieldState(name, formState);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <input
-        className={`block border outline-0 w-full px-4 py-3 border-grey-300 rounded-md  ${
+        className={`border outline-0 w-full px-4 py-3 border-grey-300 rounded-md  ${
           error ? style.error : style.normal
         }`}
         type={type}
@@ -31,7 +31,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
         {...register(name, registerOptions)}
       />
       {error && (
-        <p className="w-full px-4 pt-2 text-red-500">{error.message}</p>
+        <p className="text-xs w-full px-4 pt-2 text-red-500">{error.message}</p>
       )}
     </div>
   );
