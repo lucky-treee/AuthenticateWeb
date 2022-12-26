@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import TextInput from 'components/base/TextInput';
 
 interface AuthenticateForm {
-  id: string;
+  email: string;
   password: string;
 }
 
@@ -14,7 +14,7 @@ const LoginForm: React.FC = () => {
   const methods = useForm<AuthenticateForm>({
     mode: 'onChange',
     defaultValues: {
-      id: '',
+      email: '',
       password: '',
     },
   });
@@ -30,11 +30,11 @@ const LoginForm: React.FC = () => {
         onSubmit={methods.handleSubmit(handleAuthenticateFormSubmit)}
       >
         <TextInput
-          name="id"
-          placeholder={t('id-placeholder')}
+          name="email"
+          placeholder={t('email-placeholder')}
           required={{
             value: true,
-            message: t('empty-id-error-message'),
+            message: t('empty-email-error-message'),
           }}
         />
         <TextInput
