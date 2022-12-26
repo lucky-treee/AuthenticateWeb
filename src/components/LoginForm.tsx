@@ -2,6 +2,7 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import TextInput from 'components/base/TextInput';
+import useSignIn from 'hooks/useSignIn';
 
 interface AuthenticateForm {
   email: string;
@@ -19,9 +20,12 @@ const LoginForm: React.FC = () => {
     },
   });
 
+  const { mutate } = useSignIn();
+
   const handleAuthenticateFormSubmit = (value: AuthenticateForm) => {
-    console.log(value);
+    mutate(value);
   };
+
   return (
     <FormProvider {...methods}>
       <form
