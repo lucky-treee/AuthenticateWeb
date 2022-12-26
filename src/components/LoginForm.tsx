@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import Button from 'components/base/Button';
 import TextInput from 'components/base/TextInput';
 import useSignIn from 'hooks/useSignIn';
 
@@ -20,18 +21,20 @@ const LoginForm: React.FC = () => {
     },
   });
 
-  const { mutate } = useSignIn();
+  const { mutate, isLoading } = useSignIn();
 
   const handleAuthenticateFormSubmit = (value: AuthenticateForm) => {
     mutate(value);
   };
+
+  const handleSubmit = methods.handleSubmit(handleAuthenticateFormSubmit);
 
   return (
     <FormProvider {...methods}>
       <form
         autoComplete="off"
         className="flex flex-col items-start m-8 gap-4 w-[532px]"
-        onSubmit={methods.handleSubmit(handleAuthenticateFormSubmit)}
+        onSubmit={handleSubmit}
       >
         <TextInput
           name="email"
@@ -50,12 +53,14 @@ const LoginForm: React.FC = () => {
             message: t('empty-password-error-message'),
           }}
         />
-        <button
-          className="w-full py-4 bg-primary rounded-md text-white font-medium hover:bg-primary-hover"
-          type="submit"
+        <Button
+          buttonType="primary"
+          type="button"
+          isLoading={isLoading}
+          onClick={handleSubmit}
         >
           {t('submit-button-text')}
-        </button>
+        </Button>
       </form>
     </FormProvider>
   );
