@@ -14,10 +14,6 @@ const InternalService: React.FC = () => {
 
   return (
     <div className="flex flex-row w-full justify-center items-center">
-      <Link to={Path.SEARCH_ID} className="p-3 text-sm">
-        {t('search-id-button-text')}
-      </Link>
-      <Divider />
       <Link to={Path.SEARCH_PASSWORD} className="p-3 text-sm">
         {t('search-password-button-text')}
       </Link>
