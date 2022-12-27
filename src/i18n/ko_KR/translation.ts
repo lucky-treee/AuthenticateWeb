@@ -1,7 +1,7 @@
 const text = {
-  'id-placeholder': '아이디',
+  'email-placeholder': '이메일',
   'password-placeholder': '비밀번호',
-  'empty-id-error-message': 'ID를 입력해 주세요.',
+  'empty-email-error-message': '이메일을 입력해 주세요.',
   'empty-password-error-message': '비밀번호를 입력해 주세요.',
   'submit-button-text': '로그인',
   'sign-up-button-text': '회원가입',
