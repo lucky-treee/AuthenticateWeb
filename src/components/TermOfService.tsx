@@ -9,7 +9,7 @@ const TermOfService: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="absolute bottom-[80px] flex flex-col justify-center items-center">
+    <div className="absolute bottom-[32px] flex flex-col justify-center items-center">
       <div className="flex flex-row justify-center items-center">
         <a
           className="px-3 text-sm"
