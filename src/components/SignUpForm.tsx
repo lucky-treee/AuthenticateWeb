@@ -50,6 +50,11 @@ const SignUpForm: React.FC = () => {
             value: true,
             message: t('empty-email-error-message'),
           }}
+          validate={{
+            isEmail: (value) =>
+              /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value) ||
+              (t('invalid-email-error-message') as string),
+          }}
         />
         <label>{t('id-label')}</label>
         <TextInput

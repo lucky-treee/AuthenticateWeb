@@ -2,6 +2,7 @@ const text = {
   'email-label': '이메일',
   'email-placeholder': '이메일',
   'password-label': '비밀번호',
+  'invalid-email-error-message': '이메일 형식이 올바르지 않습니다.',
   'password-placeholder': '비밀번호',
   'id-placeholder': '아이디',
   'id-label': '아이디',
