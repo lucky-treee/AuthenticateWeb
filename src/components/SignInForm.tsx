@@ -5,15 +5,15 @@ import Button from 'components/base/Button';
 import TextInput from 'components/base/TextInput';
 import useSignIn from 'hooks/useSignIn';
 
-interface AuthenticateForm {
+interface SignInFormType {
   email: string;
   password: string;
 }
 
-const LoginForm: React.FC = () => {
+const SignInForm: React.FC = () => {
   const { t } = useTranslation();
 
-  const methods = useForm<AuthenticateForm>({
+  const methods = useForm<SignInFormType>({
     mode: 'onChange',
     defaultValues: {
       email: '',
@@ -23,11 +23,11 @@ const LoginForm: React.FC = () => {
 
   const { mutate, isLoading } = useSignIn();
 
-  const handleAuthenticateFormSubmit = (value: AuthenticateForm) => {
+  const handleSignInFormSubmit = (value: SignInFormType) => {
     mutate(value);
   };
 
-  const handleSubmit = methods.handleSubmit(handleAuthenticateFormSubmit);
+  const handleSubmit = methods.handleSubmit(handleSignInFormSubmit);
 
   return (
     <FormProvider {...methods}>
@@ -36,6 +36,7 @@ const LoginForm: React.FC = () => {
         className="flex flex-col items-start m-8 gap-4 w-[532px]"
         onSubmit={handleSubmit}
       >
+        <label>{t('email-label')}</label>
         <TextInput
           name="email"
           placeholder={t('email-placeholder')}
@@ -43,7 +44,13 @@ const LoginForm: React.FC = () => {
             value: true,
             message: t('empty-email-error-message'),
           }}
+          validate={{
+            isEmail: (value) =>
+              /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value) ||
+              (t('invalid-email-error-message') as string),
+          }}
         />
+        <label>{t('password-label')}</label>
         <TextInput
           name="password"
           type="password"
@@ -66,4 +73,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;

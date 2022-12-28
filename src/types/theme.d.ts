@@ -1,5 +1,5 @@
 import 'styled-components';
-import type { Palette } from './GlobalStyle';
+import type { Palette } from 'GlobalStyle';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
